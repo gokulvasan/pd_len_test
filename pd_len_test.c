@@ -32,12 +32,13 @@ int main(int argc, char** argv)
 	
 	fd = fopen(path, "rw");
 	if(!fd) {
-		perror(stderr, "Something is Wrong in opening the file\n");
+		perror("Something is Wrong in opening the file\n");
 		exit(-1);
 	}
 	
 	fgets(temp, 40, fd);
 	printf("The old Value is: %s\n", temp);
 
+	return 0;
 }
 
