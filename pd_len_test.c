@@ -26,6 +26,7 @@ int main(int argc, char** argv)
 	pid_t pid = getpid();
 	char path[PATH_LEN] = {'\0'};
 	char temp[40] = {0x00};
+	unsigned long long val[2] = {150, 200};
 
 	sprintf(path, "%s%d%s", PROC, pid, PD_LEN);
 	printf("The Path is %s\n", path);
@@ -38,6 +39,14 @@ int main(int argc, char** argv)
 	
 	fgets(temp, 40, fd);
 	printf("The old Value is: %s\n", temp);
+	printf("Setting Val to: STMA %llu LTMA %llu\n", val[0], val[1]);
+
+	if(fwrite(val, 1, sizeof(val), fd)) {
+		perror("Write is not working :D");
+		exit(-1);
+	}
+	fgets(temp, 40, fd);
+	printf("The New Value is: %s\n", temp);
 
 	return 0;
 }
