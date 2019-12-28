@@ -47,7 +47,7 @@ int main(int argc, char** argv)
 		perror("Something is Wrong in opening the file\n");
 		exit(-1);
 	}
-	if(fwrite(val, sizeof(val), 1, fd) != sizeof(val)) {
+	if(!fwrite(val, sizeof(val), 1, fd)) {
 		perror("Write is not working1 :(");
 		exit(-1);
 	}
