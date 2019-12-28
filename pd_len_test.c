@@ -25,7 +25,7 @@ int main(int argc, char** argv)
 	FILE *fd;
 	pid_t pid = getpid();
 	char path[PATH_LEN] = {'\0'};
-	char temp[40] = {0x00};
+	unsigned long long data[2] = {0x00};
 	unsigned long long val[2] = {150, 200};
 
 	sprintf(path, "%s%d%s", PROC, pid, PD_LEN);
@@ -36,20 +36,20 @@ int main(int argc, char** argv)
 		perror("Something is Wrong in opening the file\n");
 		exit(-1);
 	}
-	
-	fgets(temp, 40, fd);
-	printf("The old Value is: %s\n", temp);
-	printf("Setting Val to: STMA %llu LTMA %llu\n", val[0], val[1]);
+	fread(data, sizeof(data), 1, fd);	
+	printf("The old Value is: STMA: %llu LTMA: %llu\n", data[0], data[1]);
 
+	printf("Setting Val to: STMA %llu LTMA %llu\n", val[0], val[1]);
 	if(fwrite(val, 1, sizeof(val), fd)) {
 		perror("Write is not working :D");
 		exit(-1);
 	}
+
 	fclose(fd);
 	fd = fopen(path, "r");
-	memset(temp, '0x00', sizeof(temp));
-	fgets(temp, 40, fd);
-	printf("Closed & Extracted New Value is: %s\n", temp);
+	memset(data, 0x00, sizeof(data));
+	fread(data, sizeof(data), 1, fd);	
+	printf("The old Value is: STMA: %llu LTMA: %llu\n", data[0], data[1]);
 
 	return 0;
 }
