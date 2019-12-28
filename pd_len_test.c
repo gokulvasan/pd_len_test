@@ -40,7 +40,7 @@ int main(int argc, char** argv)
 	printf("The old Value is: STMA: %llu LTMA: %llu\n", data[0], data[1]);
 
 	printf("Setting Val to: STMA %llu LTMA %llu\n", val[0], val[1]);
-	if(fwrite(val, 1, sizeof(val), fd) != sizeof(val)) {
+	if(fwrite(val, sizeof(val), 1, fd) != sizeof(val)) {
 		perror("Write is not working :D");
 		exit(-1);
 	}
