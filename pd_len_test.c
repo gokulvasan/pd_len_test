@@ -41,7 +41,7 @@ int main(int argc, char** argv)
 
 	printf("Setting Val to: STMA %llu LTMA %llu\n", val[0], val[1]);
 	if(fwrite(val, sizeof(val), 1, fd) != sizeof(val)) {
-		perror("Write is not working :D");
+		perror("Write is not working :(");
 		exit(-1);
 	}
 
