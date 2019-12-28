@@ -45,9 +45,11 @@ int main(int argc, char** argv)
 		perror("Write is not working :D");
 		exit(-1);
 	}
+	fclose(fd);
+	fd = fopen(path, "r");
 	memset(temp, '0x00', sizeof(temp));
 	fgets(temp, 40, fd);
-	printf("Extracted New Value is: %s\n", temp);
+	printf("Closed & Extracted New Value is: %s\n", temp);
 
 	return 0;
 }
