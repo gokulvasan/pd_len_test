@@ -40,7 +40,7 @@ int main(int argc, char** argv)
 	printf("The old Value is: STMA: %llu LTMA: %llu\n", data[0], data[1]);
 
 	printf("Setting Val to: STMA %llu LTMA %llu\n", val[0], val[1]);
-	if(fwrite(val, 1, sizeof(val), fd)) {
+	if(fwrite(val, 1, sizeof(val), fd) != sizeof(val)) {
 		perror("Write is not working :D");
 		exit(-1);
 	}
@@ -49,7 +49,7 @@ int main(int argc, char** argv)
 	fd = fopen(path, "r");
 	memset(data, 0x00, sizeof(data));
 	fread(data, sizeof(data), 1, fd);	
-	printf("The old Value is: STMA: %llu LTMA: %llu\n", data[0], data[1]);
+	printf("The New  Value is: STMA: %llu LTMA: %llu\n", data[0], data[1]);
 
 	return 0;
 }
