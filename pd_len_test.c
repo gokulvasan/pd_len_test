@@ -47,7 +47,7 @@ int main(int argc, char** argv)
 	}
 	memset(temp, '\0', sizeof(temp));
 	fgets(temp, 40, fd);
-	printf("The New Value is: %s\n", temp);
+	printf("Extracted New Value is: %s\n", temp);
 
 	return 0;
 }
