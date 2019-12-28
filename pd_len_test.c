@@ -42,7 +42,7 @@ int main(int argc, char** argv)
 	printf("Setting Val to: STMA %llu LTMA %llu\n", val[0], val[1]);
 
 	fclose(fd);
-	fd = fopen(path, "rw");
+	fd = fopen(path, "wb");
 	if(!fd) {
 		perror("Something is Wrong in opening the file\n");
 		exit(-1);
@@ -53,7 +53,7 @@ int main(int argc, char** argv)
 	}
 
 	fclose(fd);
-	fd = fopen(path, "r");
+	fd = fopen(path, "rb");
 	memset(data, 0x00, sizeof(data));
 	fread(data, sizeof(data), 1, fd);	
 	printf("The New  Value is: STMA: %llu LTMA: %llu\n", data[0], data[1]);
