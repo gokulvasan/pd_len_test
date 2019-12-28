@@ -45,6 +45,7 @@ int main(int argc, char** argv)
 		perror("Write is not working :D");
 		exit(-1);
 	}
+	memset(temp, '\0', sizeof(temp));
 	fgets(temp, 40, fd);
 	printf("The New Value is: %s\n", temp);
 
